@@ -41,7 +41,20 @@ class LoginViewController: UIViewController {
     //Actions
     @IBAction func loginButtonTouch(sender: AnyObject) {
       
-        println("Login - implement me")
+        var userCreds = [
+            UdacityClient.ParameterKeys.Username : emailTextField.text,
+            UdacityClient.ParameterKeys.Password : passwordTextField.text
+        ]
+        
+        UdacityClient.sharedInstance().authenticateWithViewController(userCreds) { (success, errorString) in
+            
+            if success {
+               self.completedLogin()
+            }
+            else {
+               self.displayError(errorString)
+            }
+        }
         
     }
     
@@ -61,13 +74,19 @@ class LoginViewController: UIViewController {
     //Helper functions
     func completedLogin(){
         
-        println("Completed Login - implement me")
+        println("Completed Login - implement me. Should segue")
         
     }
     
     func displayError(errorString: String?){
     
-        println("Display Error - implement me")
+        dispatch_async(dispatch_get_main_queue(), {
+          
+            if let errorString = errorString {
+                self.debugLabel.text = errorString
+            }
+            
+        })
     
     }
 

@@ -13,6 +13,11 @@
 		2B4B3D681B8A8F5D005796AC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B3D661B8A8F5D005796AC /* LaunchScreen.xib */; };
 		2B4B3D741B8A8F5D005796AC /* onthemapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D731B8A8F5D005796AC /* onthemapTests.swift */; };
 		2B4B3D831B8A9415005796AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D5F1B8A8F5D005796AC /* LoginViewController.swift */; };
+		2B4B3D851B8BD884005796AC /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D841B8BD884005796AC /* UdacityClient.swift */; };
+		2B4B3D871B8BDAA4005796AC /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D861B8BDAA4005796AC /* ParseClient.swift */; };
+		2B4B3D891B8BDB87005796AC /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D881B8BDB87005796AC /* UdacityConstants.swift */; };
+		2B4B3D8B1B8BE07C005796AC /* ClientHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D8A1B8BE07C005796AC /* ClientHelpers.swift */; };
+		2B4B3D8D1B8BE2EC005796AC /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D8C1B8BE2EC005796AC /* UdacityConvenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 		2B4B3D6D1B8A8F5D005796AC /* onthemapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = onthemapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4B3D721B8A8F5D005796AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B4B3D731B8A8F5D005796AC /* onthemapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onthemapTests.swift; sourceTree = "<group>"; };
+		2B4B3D841B8BD884005796AC /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		2B4B3D861B8BDAA4005796AC /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		2B4B3D881B8BDB87005796AC /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		2B4B3D8A1B8BE07C005796AC /* ClientHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientHelpers.swift; sourceTree = "<group>"; };
+		2B4B3D8C1B8BE2EC005796AC /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +153,7 @@
 			children = (
 				2B4B3D821B8A9017005796AC /* Udacity */,
 				2B4B3D811B8A900C005796AC /* Parse */,
+				2B4B3D8A1B8BE07C005796AC /* ClientHelpers.swift */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -150,6 +161,7 @@
 		2B4B3D811B8A900C005796AC /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				2B4B3D861B8BDAA4005796AC /* ParseClient.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -157,6 +169,9 @@
 		2B4B3D821B8A9017005796AC /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
+				2B4B3D841B8BD884005796AC /* UdacityClient.swift */,
+				2B4B3D881B8BDB87005796AC /* UdacityConstants.swift */,
+				2B4B3D8C1B8BE2EC005796AC /* UdacityConvenience.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -262,7 +277,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4B3D831B8A9415005796AC /* LoginViewController.swift in Sources */,
+				2B4B3D891B8BDB87005796AC /* UdacityConstants.swift in Sources */,
 				2B4B3D5E1B8A8F5D005796AC /* AppDelegate.swift in Sources */,
+				2B4B3D871B8BDAA4005796AC /* ParseClient.swift in Sources */,
+				2B4B3D8B1B8BE07C005796AC /* ClientHelpers.swift in Sources */,
+				2B4B3D8D1B8BE2EC005796AC /* UdacityConvenience.swift in Sources */,
+				2B4B3D851B8BD884005796AC /* UdacityClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="width" constant="300" id="l7k-mG-X6M"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kr-Zc-yaT">
                                 <rect key="frame" x="150" y="515" width="300" height="30"/>
@@ -85,15 +85,14 @@
                                     <action selector="signupButtonTouch:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LYB-Xa-URA"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbJ-Wu-bTd">
-                                <rect key="frame" x="150" y="447" width="300" height="53"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="IbJ-Wu-bTd">
+                                <rect key="frame" x="150" y="447" width="300" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="HhV-AN-JUN"/>
                                     <constraint firstAttribute="height" constant="50" id="Nv8-Xa-dLv"/>
                                     <constraint firstAttribute="height" constant="21" id="bHv-dg-G5L"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
