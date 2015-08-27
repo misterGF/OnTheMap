@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
     //Actions
     @IBAction func loginButtonTouch(sender: AnyObject) {
       
+        println("login button clicked")
         var userCreds = [
             UdacityClient.ParameterKeys.Username : emailTextField.text,
             UdacityClient.ParameterKeys.Password : passwordTextField.text
@@ -74,7 +75,12 @@ class LoginViewController: UIViewController {
     //Helper functions
     func completedLogin(){
         
-        println("Completed Login - implement me. Should segue")
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapsNavigationController") as! UINavigationController
+            self.presentViewController(controller, animated: true, completion: nil)
+            
+        })
         
     }
     
@@ -84,11 +90,24 @@ class LoginViewController: UIViewController {
           
             if let errorString = errorString {
                 self.debugLabel.text = errorString
+                self.alertError(errorString)
             }
             
         })
     
     }
+    
+    func alertError(errorString: String?){
+        
+        let alertController = UIAlertController(title: "Error Detected", message:
+            errorString, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,
+            handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
 
 
 }

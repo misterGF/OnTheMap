@@ -41,11 +41,11 @@ class UdacityClient : NSObject {
             
             if error != nil { // Handle error…
                 
-                // TODO
+                completionHandler(result: response , error: "Network error detected.")
                 println("Implement alerts view controller for failed connection vs wrong creds")
                 return
-                
             }
+            
 
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             

@@ -11,7 +11,7 @@ import Foundation
 
 extension UdacityClient {
     
-    func authenticateWithViewController(userCredentials: [String: AnyObject], completionHandler: (success: Bool, ErrorString: String?) -> Void){
+    func authenticateWithViewController(userCredentials: [String: AnyObject], completionHandler: (success: Bool, errorString: String?) -> Void){
     
         self.getSession(userCredentials) { (success, sessionID, userKey, errorString) in
             
@@ -21,12 +21,12 @@ extension UdacityClient {
                 self.sessionID = sessionID!
                 self.userKey = userKey!
                 
-                println("Fix user key and segue from here!")
+                completionHandler(success: true, errorString: nil)
                 
             } else {
                 
                 //Failed. Lets update our view
-                completionHandler(success: success, ErrorString: errorString)
+                completionHandler(success: false, errorString: errorString)
             }
         }
         
@@ -43,7 +43,7 @@ extension UdacityClient {
             
             //Check for errors
             if let error = error {
-                
+
                 completionHandler(success: false, sessionID: nil, userKey: nil, errorString: error)
             
             } else {
@@ -54,7 +54,9 @@ extension UdacityClient {
                     let sessionID = session.valueForKey(UdacityClient.JSONResponseKeys.SessionID) as! String
                     
                     //Try grabbing the usrekey
-                    if let userKey = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Account) as? String {
+                    if let account: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Account) {
+                        
+                        let userKey = account.valueForKey(UdacityClient.JSONResponseKeys.Key) as! String
                         
                         completionHandler(success: true, sessionID: sessionID, userKey: userKey, errorString: nil)
                         
