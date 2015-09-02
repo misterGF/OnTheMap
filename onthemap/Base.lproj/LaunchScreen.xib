@@ -10,44 +10,54 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="  Copyright (c) 2015 Gil Ferreira. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Gil Ferreira. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="20" y="439" width="441" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="situation" translatesAutoresizingMaskIntoConstraints="NO" id="Hza-1b-MX7">
-                    <rect key="frame" x="190" y="190" width="100" height="100"/>
-                    <color key="backgroundColor" red="0.45098039220000002" green="0.79607843140000001" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon128-2x" translatesAutoresizingMaskIntoConstraints="NO" id="Hza-1b-MX7">
+                    <rect key="frame" x="112" y="100" width="256" height="256"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="256" id="WvH-7m-TBd"/>
+                        <constraint firstAttribute="width" constant="256" id="r5w-qa-PAr"/>
+                    </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="On The Map" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2B0-9f-bq8">
-                    <rect key="frame" x="115" y="304" width="250" height="30"/>
-                    <color key="backgroundColor" red="0.45098039220000002" green="0.79607843140000001" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="On The Map" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2B0-9f-bq8">
+                    <rect key="frame" x="115" y="371" width="250" height="32"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="LRS-lS-Brz"/>
                     </constraints>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
-            <color key="backgroundColor" red="0.45098039220000002" green="0.79607843140000001" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="2B0-9f-bq8" secondAttribute="bottom" constant="105" id="1gf-Od-79j"/>
-                <constraint firstItem="2B0-9f-bq8" firstAttribute="top" secondItem="Hza-1b-MX7" secondAttribute="bottom" constant="14" id="Ao7-Gd-rMa"/>
+                <constraint firstItem="2B0-9f-bq8" firstAttribute="top" secondItem="Hza-1b-MX7" secondAttribute="bottom" constant="15" id="Ao7-Gd-rMa"/>
                 <constraint firstAttribute="centerX" secondItem="Hza-1b-MX7" secondAttribute="centerX" id="GHU-p2-efk"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstAttribute="centerY" secondItem="Hza-1b-MX7" secondAttribute="centerY" id="a7U-VM-otC"/>
                 <constraint firstAttribute="centerX" secondItem="2B0-9f-bq8" secondAttribute="centerX" id="d8R-A7-apw"/>
+                <constraint firstAttribute="centerX" secondItem="Hza-1b-MX7" secondAttribute="centerX" id="dRq-9R-Gtj"/>
+                <constraint firstItem="Hza-1b-MX7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="gtJ-Um-kHf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="GHU-p2-efk"/>
+                    <exclude reference="a7U-VM-otC"/>
+                    <exclude reference="1gf-Od-79j"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="situation" width="128" height="128"/>
+        <image name="icon128-2x" width="128" height="128"/>
     </resources>
 </document>

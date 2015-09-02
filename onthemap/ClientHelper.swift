@@ -31,5 +31,4 @@ class ClientHelper: NSObject {
         
         return (!urlVars.isEmpty ? "?" : "") + join("&", urlVars)
     }
-    
 }
