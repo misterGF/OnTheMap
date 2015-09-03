@@ -27,8 +27,6 @@ extension ParseClient {
                   
                     var studentInfo = StudentInformation.studentLocationsFromResults(results)
                     self.studentInfo = studentInfo
-                    
-                    println(self.studentInfo)
                     completionHandler(success: true, studentInfo: studentInfo, errorString: error)
                     
                 } else {

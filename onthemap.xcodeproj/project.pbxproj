@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2566E91B97D38700FFF810 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2566E81B97D38700FFF810 /* ListViewController.swift */; };
 		2B4B3D5E1B8A8F5D005796AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B3D5D1B8A8F5D005796AC /* AppDelegate.swift */; };
 		2B4B3D631B8A8F5D005796AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B3D611B8A8F5D005796AC /* Main.storyboard */; };
 		2B4B3D651B8A8F5D005796AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4B3D641B8A8F5D005796AC /* Images.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2566E81B97D38700FFF810 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		2B4B3D581B8A8F5D005796AC /* onthemap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onthemap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4B3D5C1B8A8F5D005796AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B4B3D5D1B8A8F5D005796AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				2B4B3D5F1B8A8F5D005796AC /* LoginViewController.swift */,
 				2B6876C11B94F02D00D59F66 /* MapViewController.swift */,
+				2B2566E81B97D38700FFF810 /* ListViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				2B6876C81B966C8C00D59F66 /* ParseConvenience.swift in Sources */,
 				2B4B3D831B8A9415005796AC /* LoginViewController.swift in Sources */,
+				2B2566E91B97D38700FFF810 /* ListViewController.swift in Sources */,
 				2B4B3D891B8BDB87005796AC /* UdacityConstants.swift in Sources */,
 				2B4B3D5E1B8A8F5D005796AC /* AppDelegate.swift in Sources */,
 				2B6876C61B94F69100D59F66 /* ParseConstants.swift in Sources */,
