@@ -24,6 +24,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Get delegate and shared session
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         session = NSURLSession.sharedSession()
+        
+        //Add navigation buttons
+        customizeNavBar()
 
     }
     
@@ -96,6 +99,5 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return locations.count
     }
-    
     
 }

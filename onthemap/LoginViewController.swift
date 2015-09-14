@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     //Define outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupLinkButton: UIButton!
-    @IBOutlet weak var signinWithFbButton: UIButton!
     @IBOutlet weak var debugLabel: UILabel!
+    @IBOutlet weak var fbLoginView: UIView!
     
     var appDelegate: AppDelegate!
     var session : NSURLSession!
@@ -27,6 +29,13 @@ class LoginViewController: UIViewController {
         //Get delegate and shared session
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         session = NSURLSession.sharedSession()
+                
+        var loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.center = CGPoint(x: 200, y: 50)
+        loginButton.delegate = self
+        fbLoginView.addSubview(loginButton)
+
 
     }
     
@@ -47,7 +56,7 @@ class LoginViewController: UIViewController {
             UdacityClient.ParameterKeys.Password : passwordTextField.text
         ]
         
-        UdacityClient.sharedInstance().authenticateWithViewController(userCreds) { (success, errorString) in
+        UdacityClient.sharedInstance().authenticateWithViewController(userCreds, parameterKey: UdacityClient.ParameterKeys.Udacity) { (success, errorString) in
             
             if success {
                self.completedLogin()
@@ -72,18 +81,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    //Helper functions
-    func completedLogin(){
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapsNavigationController") as! UINavigationController
-            self.presentViewController(controller, animated: true, completion: nil)
-            
-        })
-        
-    }
-    
+    //Helper functions    
     func displayError(errorString: String?){
     
         dispatch_async(dispatch_get_main_queue(), {
@@ -96,19 +94,44 @@ class LoginViewController: UIViewController {
         })
     
     }
-    
-    func alertError(errorString: String?){
+
+    // Facebook Delegate Methods
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
+    {
+        if error == nil
+        {
+            println("Login complete.")
+            
+            if var token = result.token.tokenString {
+ 
+                var userFBAccessToken = [
+                    UdacityClient.ParameterKeys.AccessToken : token
+                ]
+                
+                UdacityClient.sharedInstance().authenticateWithViewController(userFBAccessToken, parameterKey: UdacityClient.ParameterKeys.Facebook) { (success, errorString) in
+                    
+                    if success {
+                        self.completedLogin()
+                    }
+                    else {
+                        self.displayError(errorString)
+                    }
+                }
+            }
+            
+
+        }
+        else
+        {
+            println(error.localizedDescription)
+            self.displayError(error.localizedDescription)
+        }
         
-        let alertController = UIAlertController(title: "Error Detected", message:
-            errorString, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,
-            handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    
-
-
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
+    {
+        println("User logged out...")
+    }
 }
 

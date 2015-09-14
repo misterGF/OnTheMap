@@ -24,6 +24,8 @@ extension UdacityClient {
         static let Udacity: String = "udacity"
         static let Username: String = "username"
         static let Password:String = "password"
+        static let Facebook:String = "facebook_mobile"
+        static let AccessToken:String = "access_token"
     }
     
     struct Methods {

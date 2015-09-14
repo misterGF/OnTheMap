@@ -11,9 +11,9 @@ import Foundation
 
 extension UdacityClient {
     
-    func authenticateWithViewController(userCredentials: [String: AnyObject], completionHandler: (success: Bool, errorString: String?) -> Void){
+    func authenticateWithViewController(userCredentials: [String: AnyObject], parameterKey: String!, completionHandler: (success: Bool, errorString: String?) -> Void){
     
-        self.getSession(userCredentials) { (success, sessionID, userKey, errorString) in
+        self.getSession(userCredentials, parameterKey: parameterKey) { (success, sessionID, userKey, errorString) in
             
             if success {
                 
@@ -32,10 +32,10 @@ extension UdacityClient {
         
     }
 
-    func getSession(usernameCredentials: [String: AnyObject], completionHandler: (success: Bool, sessionID: String?, userKey: String?, errorString: String?) -> Void){
+    func getSession(usernameCredentials: [String: AnyObject], parameterKey: String!, completionHandler: (success: Bool, sessionID: String?, userKey: String?, errorString: String?) -> Void){
         
         //Setup jsonBody
-        var jsonBody = [UdacityClient.ParameterKeys.Udacity : usernameCredentials]
+        var jsonBody = [parameterKey : usernameCredentials]
         
         //Submit to post method
         taskForPOSTMethod(Methods.Session, jsonBody: jsonBody) {
@@ -74,5 +74,25 @@ extension UdacityClient {
             
         }
         
+    }
+    
+    func logoutOfUdacity(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
+        taskForDELETEMethod(Methods.Session) {
+            JSONResult, error in
+            
+            //Check for errors
+            if let error = error {
+                
+                completionHandler(success: false, errorString: error)
+                
+            } else {
+                
+                completionHandler(success: true, errorString: nil)
+                
+            }
+           
+        }
+    
     }
 }

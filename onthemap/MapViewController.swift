@@ -23,12 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
         //Add navigation buttons
-        var rightRefreshButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "refreshParseData:")
-        var rightLocationButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "startEnterLocation:")
-        var leftLogoutButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser:")
-        
-        self.navigationItem.setRightBarButtonItems([rightRefreshButtonItem,rightRefreshButtonItem], animated: true)
-        self.navigationItem.setLeftBarButtonItem(leftLogoutButtonItem, animated: true)
+        customizeNavBar()
         
         //Get delegate and shared session
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -122,4 +117,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
         }
     }
+    
 }

@@ -42,7 +42,6 @@ class UdacityClient : NSObject {
             if error != nil { // Handle error…
                 
                 completionHandler(result: response , error: "Network error detected.")
-                println("Implement alerts view controller for failed connection vs wrong creds")
                 return
             }
             
@@ -76,6 +75,53 @@ class UdacityClient : NSObject {
     
     //GETs
     
+    //DELETEs
+    func taskForDELETEMethod(method: String, completionHandler: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
+        
+        let url: String = Constants.BaseURL + method
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        var jsonifyError: NSError? = nil
+        
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        
+        for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie] {
+            
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+            
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            
+            request.setValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-TOKEN")
+            
+        }
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            if error != nil { // Handle error…
+                
+                completionHandler(result: response , error: "Network error detected.")
+                return
+                
+            }
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            
+            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
+            completionHandler(result: newData, error: nil)
+            
+        }
+ 
+        
+        task.resume()
+        
+        return task
+    }
     
     //Singleton
     
