@@ -26,6 +26,7 @@
 		2BAD23F71BA62E940077E17C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAD23F51BA62E940077E17C /* FBSDKCoreKit.framework */; };
 		2BAD23F81BA62E940077E17C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAD23F61BA62E940077E17C /* FBSDKLoginKit.framework */; };
 		2BAD23FB1BA64BF70077E17C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BAD23F91BA64BF70077E17C /* Main.storyboard */; };
+		2BAD23FD1BA787AE0077E17C /* InfoPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAD23FC1BA787AE0077E17C /* InfoPostingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		2BAD23F51BA62E940077E17C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		2BAD23F61BA62E940077E17C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		2BAD23FA1BA64BF70077E17C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2BAD23FC1BA787AE0077E17C /* InfoPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPostingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				2B4B3D5F1B8A8F5D005796AC /* LoginViewController.swift */,
 				2B6876C11B94F02D00D59F66 /* MapViewController.swift */,
 				2B2566E81B97D38700FFF810 /* ListViewController.swift */,
+				2BAD23FC1BA787AE0077E17C /* InfoPostingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				2B2566E91B97D38700FFF810 /* ListViewController.swift in Sources */,
 				2B4B3D891B8BDB87005796AC /* UdacityConstants.swift in Sources */,
 				2B4B3D5E1B8A8F5D005796AC /* AppDelegate.swift in Sources */,
+				2BAD23FD1BA787AE0077E17C /* InfoPostingViewController.swift in Sources */,
 				2BAD23DE1BA2171E0077E17C /* viewHelper.swift in Sources */,
 				2B6876C61B94F69100D59F66 /* ParseConstants.swift in Sources */,
 				2B4B3D871B8BDAA4005796AC /* ParseClient.swift in Sources */,

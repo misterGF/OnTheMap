@@ -25,13 +25,15 @@ extension UIViewController {
         navigationItem.setLeftBarButtonItem(leftLogoutButtonItem, animated: true)
         
     }
-    
+        
     func refreshParseData(sender: UIBarButtonItem) {
         println("refrsh")
     }
     
     func startEnterLocation(sender: UIBarButtonItem) {
-        println("enter location")
+        
+        //Segue to gotoPostView
+        self.performSegueWithIdentifier("gotoPostView", sender: self)
     }
     
     func logoutUser(sender: UIBarButtonItem) {
