@@ -221,7 +221,7 @@
                                     <outlet property="delegate" destination="93G-eH-NiM" id="dDm-hH-JA2"/>
                                 </connections>
                             </mapView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FcZ-2A-m8I">
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FcZ-2A-m8I">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -411,9 +411,13 @@
                                     <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AjF-nA-1xh">
                                         <rect key="frame" x="0.0" y="-7" width="600" height="321"/>
                                     </mapView>
+                                    <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qSM-pZ-aBY">
+                                        <rect key="frame" x="290" y="147" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.45098039220000002" green="0.79607843140000001" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="qSM-pZ-aBY" secondAttribute="centerX" id="1mL-Mi-BsM"/>
                                     <constraint firstItem="AjF-nA-1xh" firstAttribute="top" secondItem="dKG-Ta-C11" secondAttribute="top" id="5r5-1A-Uov"/>
                                     <constraint firstAttribute="centerX" secondItem="AjF-nA-1xh" secondAttribute="centerX" id="64X-5S-QBQ"/>
                                     <constraint firstItem="X91-cV-bjP" firstAttribute="leading" secondItem="dKG-Ta-C11" secondAttribute="leading" constant="150" id="65T-ur-dSL"/>
@@ -423,6 +427,7 @@
                                     <constraint firstAttribute="trailing" secondItem="AjF-nA-1xh" secondAttribute="trailing" id="NkX-tk-bPC"/>
                                     <constraint firstAttribute="centerX" secondItem="X91-cV-bjP" secondAttribute="centerX" id="UW2-fk-NkX"/>
                                     <constraint firstAttribute="bottom" secondItem="AjF-nA-1xh" secondAttribute="bottom" id="xse-1Y-AYI"/>
+                                    <constraint firstAttribute="centerY" secondItem="qSM-pZ-aBY" secondAttribute="centerY" id="zbz-BC-n2D"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -523,6 +528,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="qSM-pZ-aBY" id="VYr-Sa-DR3"/>
                         <outlet property="findOnTheMap" destination="gZz-jw-bKc" id="4f1-de-dT3"/>
                         <outlet property="studyTxtLabel" destination="YTr-eG-Zbw" id="hj5-4Z-zBb"/>
                         <outlet property="submitInfoButton" destination="pXR-Pv-jci" id="9PB-wx-bWP"/>

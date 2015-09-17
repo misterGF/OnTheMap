@@ -23,6 +23,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var submitInfoButton: UIButton!
     @IBOutlet var userLocationMapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Elements for initial display
     @IBOutlet weak var whereTxtLabel: UITextField!
@@ -60,8 +61,9 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         //Get value inserted
         address = userLocation.text
         
-        //Set value on Udacity client
-        UdacityClient.sharedInstance().mapString = address
+        //Start loader
+        self.activityIndicator.alpha = 1.0
+        self.activityIndicator.startAnimating()
         
         //try to find
         geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
@@ -80,6 +82,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 //Save values to Udacity client
                 UdacityClient.sharedInstance().lat = lat
                 UdacityClient.sharedInstance().lng = long
+                UdacityClient.sharedInstance().mapString = self.address
                 
                 // The lat and long are used to create a CLLocationCoordinates2D instance.
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -101,6 +104,10 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
             }
             
         })
+        
+        //Stop loader
+        self.activityIndicator.alpha = 0.0
+        self.activityIndicator.stopAnimating()
     }
     
     @IBAction func submitInfoButton(sender: AnyObject) {

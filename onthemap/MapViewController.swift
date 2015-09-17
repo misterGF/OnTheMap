@@ -33,15 +33,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
  
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.startMap()
-        
-    }
-    
-    func startMap(){
+
         //Start activity indicator
         self.activityIndicator.alpha = 1.0
         self.activityIndicator.startAnimating()
+        
+        self.startMap()
+        
+        self.activityIndicator.alpha = 0.0
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func startMap(){
         
         //Grab data from parse about students
         if let locations = ParseClient.sharedInstance().studentInfo {
@@ -65,8 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
         
-        self.activityIndicator.alpha = 0.0
-        self.activityIndicator.stopAnimating()
+
     }
     
     func addToMap(studentInfo:[StudentInformation]?) {
