@@ -14,11 +14,23 @@ class UdacityClient : NSObject {
     var session: NSURLSession
     var userKey: String
     var sessionID: String
+    var firstName: String
+    var lastName: String
+    var mapString: String
+    var mediaURL: String
+    var lat: Double
+    var lng: Double
     
     override init() {
         session = NSURLSession.sharedSession()
         userKey = ""
         sessionID = ""
+        firstName = ""
+        lastName = ""
+        mapString = ""
+        mediaURL = ""
+        lat = 0.0
+        lng = 0.0
         super.init()
     }
     
@@ -74,6 +86,43 @@ class UdacityClient : NSObject {
     
     
     //GETs
+    func taskForGETMethod(method: String, completionHandler: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
+        
+        let url: String = Constants.BaseURL + method
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        var jsonifyError: NSError? = nil
+        
+        request.HTTPMethod = "GET"
+ 
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            if error != nil { // Handle error…
+                
+                completionHandler(result: response , error: "Network error detected.")
+                return
+            }
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+    
+             if let parsedResult = NSJSONSerialization.JSONObjectWithData(newData, options: NSJSONReadingOptions.AllowFragments, error: nil) as? [String: AnyObject] {
+                    
+                    completionHandler(result: parsedResult, error: nil)
+                    
+            } else {
+                    
+                completionHandler(result: nil, error: "Unable to get data")
+                    
+            }
+        
+        }
+        
+        task.resume()
+        
+        return task
+        
+    }
     
     //DELETEs
     func taskForDELETEMethod(method: String, completionHandler: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {

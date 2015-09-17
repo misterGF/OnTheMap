@@ -17,6 +17,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
     var session : NSURLSession!
     var lat:Double!
     var lng:Double!
+    var address:String!
     
     
     @IBOutlet weak var urlTextField: UITextField!
@@ -57,7 +58,10 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         var geocoder = CLGeocoder()
         
         //Get value inserted
-        var address = userLocation.text
+        address = userLocation.text
+        
+        //Set value on Udacity client
+        UdacityClient.sharedInstance().mapString = address
         
         //try to find
         geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
@@ -72,6 +76,10 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 //Show map and url
                 let lat = CLLocationDegrees(placemark.location.coordinate.latitude)
                 let long = CLLocationDegrees(placemark.location.coordinate.longitude)
+                
+                //Save values to Udacity client
+                UdacityClient.sharedInstance().lat = lat
+                UdacityClient.sharedInstance().lng = long
                 
                 // The lat and long are used to create a CLLocationCoordinates2D instance.
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -89,7 +97,7 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
                 
             } else {
                 
-                self.alertError("Unable to find \(address).")
+                self.alertError("Unable to find \(self.address).")
             }
             
         })
@@ -100,9 +108,30 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         if urlTextField.hasText() {
             println("Post location!")
             
-            //Reload data
+            var userLocation: [String:AnyObject] = [
+                ParseClient.JSONResponseKeys.UniqueKey : UdacityClient.sharedInstance().userKey,
+                ParseClient.JSONResponseKeys.FirstName : UdacityClient.sharedInstance().firstName,
+                ParseClient.JSONResponseKeys.LastName : UdacityClient.sharedInstance().lastName,
+                ParseClient.JSONResponseKeys.MapString : address,
+                ParseClient.JSONResponseKeys.MediaURL : urlTextField.text,
+                ParseClient.JSONResponseKeys.Latitude : UdacityClient.sharedInstance().lat,
+                ParseClient.JSONResponseKeys.Longitude : UdacityClient.sharedInstance().lng
+            ]
             
-            //Display modal
+            ParseClient.sharedInstance().postStudentInfo(userLocation) {
+                (success, errorstring) in
+                
+                if success {
+                  println("Success")
+                    self.refreshParseData()
+                    
+                 // self.dismissViewControllerAnimated(false, completion: nil)
+                } else {
+                    println("Failed : \(errorstring)")
+                }
+                
+            }
+
             
         } else {
             self.alertError("A URL is required.")

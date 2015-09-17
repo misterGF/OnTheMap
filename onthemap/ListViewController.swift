@@ -33,6 +33,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.startMap()
+
+    }
+    
+    func startMap() {
+        
         //Grab data from parse about students
         if let locations = ParseClient.sharedInstance().studentInfo {
             
@@ -69,7 +75,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
         }
-
     }
     
     //What is in the cell

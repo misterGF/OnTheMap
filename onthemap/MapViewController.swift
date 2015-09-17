@@ -29,61 +29,80 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         session = NSURLSession.sharedSession()
       
+    }
+ 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.startMap()
+        
+    }
+    
+    func startMap(){
         //Start activity indicator
         self.activityIndicator.alpha = 1.0
         self.activityIndicator.startAnimating()
         
         //Grab data from parse about students
-        ParseClient.sharedInstance().getStudentInfoFromParse() { (success, studentInfo, errorString) in
-        
-            if success {
+        if let locations = ParseClient.sharedInstance().studentInfo {
+            
+            self.addToMap(locations)
+            
+        } else {
+            
+            ParseClient.sharedInstance().getStudentInfoFromParse() { (success, studentInfo, errorString) in
                 
-                var annotations = [MKPointAnnotation]()
-                
-                if let locations = studentInfo {
+                if success {
                     
-                    for info in locations {
-                        
-                        //Our GEO related items
-                        let lat = CLLocationDegrees(info.latitude)
-                        let long = CLLocationDegrees(info.longitude)
-                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                        
-                        //User info
-                        let first = info.firstName
-                        let last = info.lastName
-                        let mediaURL = info.mediaURL
-                        
-                        //Create our annotation with everything
-                        var annotation = MKPointAnnotation()
-                        annotation.coordinate = coordinate
-                        annotation.title = "\(first) \(last)"
-                        annotation.subtitle = mediaURL
-                        
-                        annotations.append(annotation)
-                        
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.mapView.addAnnotations(annotations)
-                    }
-                  
-                    
+                    self.addToMap(studentInfo)
                     
                 } else {
-                    println("Unable to unwrap studentInfo")
+                    
+                    println("Didn't get it")
+                    
                 }
-
                 
-            } else {
-                
-                println("Didn't get it")
+            }
+        }
+        
+        self.activityIndicator.alpha = 0.0
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func addToMap(studentInfo:[StudentInformation]?) {
+        
+        var annotations = [MKPointAnnotation]()
+        
+        if let locations = studentInfo {
             
+            for info in locations {
+                
+                //Our GEO related items
+                let lat = CLLocationDegrees(info.latitude)
+                let long = CLLocationDegrees(info.longitude)
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                //User info
+                let first = info.firstName
+                let last = info.lastName
+                let mediaURL = info.mediaURL
+                
+                //Create our annotation with everything
+                var annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(first) \(last)"
+                annotation.subtitle = mediaURL
+                
+                annotations.append(annotation)
+                
             }
             
-            self.activityIndicator.alpha = 0.0
-            self.activityIndicator.stopAnimating()
-        
+            dispatch_async(dispatch_get_main_queue()) {
+                self.mapView.addAnnotations(annotations)
+            }
+            
+        } else {
+            println("Unable to unwrap studentInfo")
         }
         
     }

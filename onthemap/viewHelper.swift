@@ -17,7 +17,7 @@ extension UIViewController {
     func customizeNavBar() {
         
         //Add navigation buttons
-        var rightRefreshButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "refreshParseData:")
+        var rightRefreshButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "refreshBtnClicked:")
         var rightLocationButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "pin")!, style: UIBarButtonItemStyle.Plain, target: self, action: "startEnterLocation:")
         var leftLogoutButtonItem:UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser:")
         
@@ -25,9 +25,23 @@ extension UIViewController {
         navigationItem.setLeftBarButtonItem(leftLogoutButtonItem, animated: true)
         
     }
+    
+    func refreshBtnClicked(sender: UIBarButtonItem) {
         
-    func refreshParseData(sender: UIBarButtonItem) {
-        println("refrsh")
+        refreshParseData()
+    }
+    
+    func refreshParseData() {
+        
+        //Reload data by clearing out the locations and calling the mapview controller
+        ParseClient.sharedInstance().studentInfo = nil
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController") as! UITabBarController
+            self.presentViewController(controller, animated: false, completion: nil)
+            
+        })
     }
     
     func startEnterLocation(sender: UIBarButtonItem) {
@@ -65,12 +79,26 @@ extension UIViewController {
     
     func completedLogin(){
         
+        //Reset value on login to make sure we refresh when a new login happens
+        ParseClient.sharedInstance().studentInfo = nil
+        
         dispatch_async(dispatch_get_main_queue(), {
             
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AppTabBarController") as! UITabBarController
             self.presentViewController(controller, animated: true, completion: nil)
             
         })
+        
+        //Grab user data and save it
+        UdacityClient.sharedInstance().getUserData(){ success, error in
+            
+            if success {
+                println("Got user data!")
+            } else {
+                println("Failed", error)
+            }
+            
+        }
         
     }
 
@@ -93,4 +121,6 @@ extension UIViewController {
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+
 }

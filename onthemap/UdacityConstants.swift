@@ -40,6 +40,9 @@ extension UdacityClient {
         static let SessionID: String = "id"
         static let Account: String = "account"
         static let Key: String = "key"
+        static let User: String = "user"
+        static let FirstName: String = "nickname"
+        static let LastName: String = "last_name"
         
     }
     

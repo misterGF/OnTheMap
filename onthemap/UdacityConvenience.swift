@@ -37,7 +37,7 @@ extension UdacityClient {
         //Setup jsonBody
         var jsonBody = [parameterKey : usernameCredentials]
         
-        //Submit to post method
+        //Submit to POST method
         taskForPOSTMethod(Methods.Session, jsonBody: jsonBody) {
             JSONResult, error in
             
@@ -73,6 +73,47 @@ extension UdacityClient {
             }
             
         }
+        
+    }
+    
+    func getUserData(completionHandler: (success:Bool, errorString: String?) -> Void){
+        
+        //Construct URL with userkey
+        var userSlug = Methods.UserData.stringByReplacingOccurrencesOfString("{id}", withString: self.userKey, options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        //Submit to GET method
+        taskForGETMethod(userSlug) {
+            JSONResult, error in
+ 
+            if let error = error {
+                
+                completionHandler(success: false, errorString: error)
+            
+            } else {
+                
+                //Grab the json value
+                if let userResponse : AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.User) {
+                    
+                    //Fill in Udacity values
+                    self.firstName = userResponse.valueForKey(UdacityClient.JSONResponseKeys.FirstName) as! String
+                    
+                    self.lastName = userResponse.valueForKey(UdacityClient.JSONResponseKeys.LastName) as! String
+                    
+                    
+                    //Send a successful message
+                    completionHandler(success: true, errorString: nil)
+                    
+                    
+                } else {
+                    
+                    completionHandler(success: false, errorString: "Unable to get user data")
+                    
+                }
+                
+            }
+            
+        }
+        
         
     }
     

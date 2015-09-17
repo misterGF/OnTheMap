@@ -203,10 +203,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--On The Map-->
+        <!--mapViewController-->
         <scene sceneID="Whk-RJ-wdK">
             <objects>
-                <viewController id="93G-eH-NiM" customClass="MapViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="mapViewController" id="93G-eH-NiM" customClass="MapViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Tj-Rn-hvB"/>
                         <viewControllerLayoutGuide type="bottom" id="tAa-3e-ihU"/>
@@ -544,7 +544,7 @@
         <image name="tab-location" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cC2-4q-ebS"/>
-        <segue reference="K11-y5-hN8"/>
+        <segue reference="840-NB-Pc6"/>
+        <segue reference="Y8N-kf-Dtf"/>
     </inferredMetricsTieBreakers>
 </document>

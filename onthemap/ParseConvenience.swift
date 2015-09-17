@@ -39,6 +39,28 @@ extension ParseClient {
         }
     }
     
+    func postStudentInfo(userLocation: [String:AnyObject], completionHandler: (success: Bool, errorstring: String?) -> Void) {
+        
+        taskForPOSTMethod(Methods.StudentLocations, jsonBody: userLocation){
+            JSONResult, error in
+            
+            if let error = error {
+                completionHandler(success: false, errorstring: error)
+            } else {
+                
+                //Check if created
+                if let objectId = JSONResult.valueForKey(ParseClient.JSONResponseKeys.ObjectId) as? String {
+                    completionHandler(success: true, errorstring: "")
+                } else {
+                    completionHandler(success: false, errorstring: "Unable to post location")
+                }
+                
+            }
+            
+        }
+        
+    }
+    
     
     
    }
