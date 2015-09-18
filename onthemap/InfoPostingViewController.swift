@@ -11,7 +11,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class InfoPostingViewController: UIViewController, MKMapViewDelegate {
+class InfoPostingViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
     var appDelegate: AppDelegate!
     var session : NSURLSession!
@@ -39,6 +39,11 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         session = NSURLSession.sharedSession()
         
+        //Setup delegates to dismiss keyboard
+        userLocation.delegate = self
+        urlTextField.delegate = self
+  
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -46,6 +51,11 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     
     @IBAction func cancelButton(sender: AnyObject) {
     
