@@ -39,6 +39,7 @@ extension ParseClient {
         static let UniqueKey: String = "uniqueKey"
         static let Results: String = "results"
         static let Error: String = "error"
+        static let UpdateAt: String = "updatedAt"
 
     }
 }

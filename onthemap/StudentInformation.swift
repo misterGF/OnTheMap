@@ -18,7 +18,8 @@ struct StudentInformation {
     var mapString: String!
     var mediaURL: String!
     var objectId: String!
-    var uniqueKey: String //"996618664",
+    var uniqueKey: String! //"996618664",
+    var updatedAt: String!
     
     init(dictionary: [String : AnyObject]) {
         
@@ -30,6 +31,7 @@ struct StudentInformation {
         mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
         objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as! String
         uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
+        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdateAt] as! String
         
     }
     
@@ -43,6 +45,7 @@ struct StudentInformation {
             
         }
         
+        locations.sort({$0.updatedAt > $1.updatedAt})
         return locations
     }
 

@@ -26,6 +26,7 @@ extension ParseClient {
                 if let results = JSONResult.valueForKey(ParseClient.JSONResponseKeys.Results) as? [[String : AnyObject]] {
                   
                     var studentInfo = StudentInformation.studentLocationsFromResults(results)
+                    
                     self.studentInfo = studentInfo
                     completionHandler(success: true, studentInfo: studentInfo, errorString: error)
                     
