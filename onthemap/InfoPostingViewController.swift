@@ -142,8 +142,9 @@ class InfoPostingViewController: UIViewController, MKMapViewDelegate, UITextFiel
                   println("Success")
                     self.refreshParseData()
                     
-                 // self.dismissViewControllerAnimated(false, completion: nil)
                 } else {
+                    
+                    self.alertError("Failed : \(errorstring)")
                     println("Failed : \(errorstring)")
                 }
                 

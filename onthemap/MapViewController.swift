@@ -61,7 +61,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     
                 } else {
                     
-                    println("Didn't get it")
+                    println("Unable to get student info.")
+                    self.alertError("Unable to get student info.")
                     
                 }
                 
